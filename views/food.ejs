@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    
+<header class="header">
+
+    <a data-aos="zoom-in-left" data-aos-delay="150" href="#" class="logo"> <i class="fas fa-user"></i> Restaurant </a>
+
+    <nav class="navbar">
+       <a data-aos="zoom-in-left" data-aos-delay="300" href="#home">home</a>
+       <a data-aos="zoom-in-left" data-aos-delay="450" href="#about">about</a>
+       <a data-aos="zoom-in-left" data-aos-delay="750" href="/add">Products</a>
+       <a data-aos="zoom-in-left" data-aos-delay="900" href="#gallery">gallery</a>
+       <a data-aos="zoom-in-left" data-aos-delay="1050" href="#blogs">blogs</a>
+       <a data-aos="zoom-in-left" data-aos-delay="1200" href="#contact">contact</a>
+    </nav>
+    
+    
+
+</header>
+    <h1>Select Items and Add to List</h1>
+
+    <label for="itemSelect">Select an item:</label>
+    <select id="itemSelect">
+        <option value="apple" data-price="2.00">Apple</option>
+        <option value="banana" data-price="1.00">Banana</option>
+        <option value="orange" data-price="1.50">Orange</option>
+        <option value="orange" data-price="3.50">Mango</option>
+    </select>
+    <button onclick="addItemToList()">Add Item</button>
+
+    <ul id="selectedItemsList"></ul>
+
+    <div id="totalPriceDisplay">
+        Total Price: <span id="totalPrice">0.00</span>
+    </div>
+ 
+
+    
+    <button><a href="/order">Checkout</a></button>
+    <script>
+      function addItemToList() {
+    const selectElement = document.getElementById('itemSelect');
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const itemName = selectedOption.value;
+    const itemPrice = parseFloat(selectedOption.dataset.price);
+
+    const listItem = document.createElement('li');
+    listItem.textContent = itemName + ' - $' + itemPrice.toFixed(2);
+    document.getElementById('selectedItemsList').appendChild(listItem);
+
+    updateTotalPrice(itemPrice);
+}
+
+function updateTotalPrice(price) {
+    const totalPriceElement = document.getElementById('totalPrice');
+    const currentTotal = parseFloat(totalPriceElement.textContent);
+    const newTotal = currentTotal + price;
+    totalPriceElement.textContent = newTotal.toFixed(2);
+}
+
+    </script>
+</body>
+</html>

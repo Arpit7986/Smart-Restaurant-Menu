@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Razorpay Web-Integration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            display: grid;
+            grid-template-rows:auto auto;
+        }
+        
+        .main{
+           
+            border-style: solid;
+            border-width: 30px 80px 0px 80px;
+            border-color: white;
+            letter-spacing: 2px;
+        }
+        .box{
+            margin-top: 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(650px,auto));
+            grid-auto-rows: minmax(650px,auto);
+        }
+        .box1{
+            margin-left: 10%;
+        }
+        .footer{
+                border-style: solid;
+                border-width: 80px 110px 80px 110px;
+                border-color: white;
+                display: grid;
+                grid-template-columns: repeat(auto-fill,minmax(300px,auto));
+                grid-auto-rows: minmax(300px,auto);
+                column-gap: 30px;
+        }
+        .social{
+                letter-spacing: 2px;
+        }
+        .card{
+            display: flex;
+            background-color: #F1F1EF;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        .social{
+            margin-left: 22%;
+        }
+        .card img{
+            height:30px;
+            margin-left: 1%;
+        }
+        .advantage{
+            border-style: solid;
+            border-width: 20px 100px;
+            border-color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(400px,auto));
+            grid-auto-rows: minmax(100px,auto);
+            column-gap: 20px;
+        }
+        .features{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            letter-spacing: 2px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .last{
+            margin-top: 15%;
+                background-position:center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-style: solid;
+                border-width: 0px 40px;
+                border-color: white;
+                height: 100vh;
+            }
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 700;
+}
+tr{
+  border: 2px solid black;
+  text-align: left;
+  width: 50px;
+}
+th{
+    margin: 20px;
+}
+
+@media screen and (min-width:600px) {
+    .box2{
+        margin-top: 35%;
+    }
+}
+@media screen and (min-width:1470px) {
+    .box2{
+        margin-top: 0%;
+    }
+}
+    </style>
+    </head>
+    <body>
+        <div class="container">
+       
+        <div class="main">
+            <p style="font-size: 4rem;font-weight: 700;display: flex;justify-content: center;align-items: center;margin-top: 0px;">Checkout</p>
+            <div class="box">
+            <div class="box1">
+                <p style="font-size: 27px;font-weight: 700;">Customer information</p>
+                <input type="text" style="width:90%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="Username or Email Address *">
+                <p style="font-size: 27px;font-weight: 700;margin-top: 3%;">Billing details</p>
+                <input type="text" style="width:43%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="First Name *">
+                &nbsp;&nbsp;
+                <input type="text" style="width: 43%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="Last Name *">
+                <br>
+                <input type="text" style="width:90%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="Company Name *">
+                <br>
+                <select style="width: 90%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;">
+                    <option value="Afganistan">Afganistan *</option>
+                    <option value="Albania">Albania</option>
+                    <option value="United States (US)">United States (US)</option>
+                    <option value="India">India</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United States">United States</option>
+                  </select>
+                <br>
+                <input type="text" style="width:43%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="Street Address * ">
+                <input type="text" style="width:46%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="Apartment,Unit,Suit,etc.* ">
+                <br>
+                <input type="text" style="width:29%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="Town/City *">
+                <input type="text" style="width:29%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="State *">
+                <input type="text" style="width:30%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="ZIP Code *">
+                <input type="text" style="width:90%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="Phone No *">
+
+               <p style="font-size: 27px;font-weight: 700;margin-top: 3%;">Additional information</p>
+               <input type="text" style="width:90%;height: 8%;border-radius: 5px;font-size: 18px;padding: 10px;margin-top: 3%;" placeholder="Note about your order,e.g.special note for delivery">
+                <form class="pay-form">
+                    <input type="hidden" name="name" value="Food Order">
+                    <input type="hidden" name="amount" value="18.00">
+                    <input type="hidden" name="description" value="Food">
+                    <input type="submit" style="width: 90%;height: 50px;border-radius: 5px;font-size: 14px;letter-spacing: 3px;font-weight: 700;display: flex;justify-content: center;align-items: center;margin-top: 8%;background-color: #929846;" value="Place Order">
+                </form>
+            </div>
+            <div class="box2">
+                <p style="font-size: 30px;font-weight: 700;">Your order</p>
+                <table style="border: 2px solid black;margin-top: 30px;">
+                    <tr style="height: 60px;">  
+                        <td style="font-size: 21px;padding-left: 5%;font-weight: 700;">Product</td>
+                        <th></th>
+                        <td  style="font-size: 21px;font-weight: 700;">Subtotal</td>
+                    </tr>
+                    <tr style="height: 250px;width: 100px;">
+                        <td><img style="width: 210px;position: relative;left: 40px;" src="https://img.freepik.com/free-photo/vertical-shot-traditional-indian-paneer-butter-masala-cheese-cottage-curry-black-surface_181624-32001.jpg?t=st=1715507015~exp=1715510615~hmac=46f60fd79cf63bfd82319ce9938dd405fdd278ce7469e4b31cdcf9c83d8ec043&w=740" alt=""></td>
+                        <td><p></p></td>
+                        <td><p>$12.00</p></td>
+                    </tr>
+                    <tr style="height: 60px;">
+                        <td style="font-size: 21px;padding-left: 5%;">Delivery Charges</td>
+                        <td></td>
+                        <td style="font-size: 21px;">$4.00</td>
+                    </tr>
+                    <tr style="height: 60px;">
+                        <td style="font-size: 21px;padding-left: 5%;">Subtotal</td>
+                        <td></td>
+                        <td style="font-size: 21px;">$16.00</td>
+                    </tr>
+                    <tr style="height: 60px;">
+                        <td style="font-size: 21px;padding-left: 5%;font-weight: 700;">Total</td>
+                        <td></td>
+                        <td style="font-size: 21px;font-weight: 700;">$18.00</td>
+                    </tr>
+                </table>
+                
+               
+            </div>
+        </div> 
+        </div>
+
+    
+        
+           
+		
+		
+	
+</body>
+
+</html>
+
+<!--Inside index.html -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+$(document).ready(function(){
+	$('.pay-form').submit(function(e){
+		e.preventDefault();
+
+		var formData = $(this).serialize();
+
+		$.ajax({
+			url:"/createOrder",
+			type:"POST",
+			data: formData,
+			success:function(res){
+				if(res.success){
+					var options = {
+						"key": ""+res.key_id+"",
+						"amount": ""+res.amount+"",
+						"currency": "INR",
+						"name": ""+res.product_name+"",
+						"description": ""+res.description+"",
+						"image": "https://dummyimage.com/600x400/000/fff",
+						"order_id": ""+res.order_id+"",
+						"handler": function (response){
+							alert("Payment Successfully Done");
+							// window.open("/","_self")
+						},
+						"prefill": {
+							"contact":""+res.contact+"",
+							"name": ""+res.name+"",
+							"email": ""+res.email+""
+						},
+						"notes" : {
+							"description":""+res.description+""
+						},
+						"theme": {
+							"color": "#2300a3"
+						}
+					};
+					var razorpayObject = new Razorpay(options);
+					razorpayObject.on('payment.failed', function (response){
+							alert("Payment Failed.Please Try Again");
+					});
+					razorpayObject.open();
+				}
+				else{
+					alert(res.msg);
+				}
+			}
+		})
+
+	});
+});
+
+</script>

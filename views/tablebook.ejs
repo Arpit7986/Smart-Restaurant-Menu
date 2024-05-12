@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Restaurant Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1475783006851-1d68dd683eff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    header {
+      background-color: transparent;
+      color: #fff;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 999;
+      transition: background-color 0.5s ease;
+    }
+
+    header.scrolled {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      margin: 0;
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color:white;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffdb58; /* Golden color on hover */
+    }
+
+    main {
+      padding: 120px 20px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+    }
+
+    #tables {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .table {
+      width: calc(33.33% - 20px);
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 1px solid #fff;
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.5s ease;
+      cursor: pointer; /* Add pointer cursor to indicate clickable */
+    }
+
+    .table:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #add-table-btn,
+    #checkout-btn {
+      background-color: #ffdb58;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    #add-table-btn:hover,
+    #checkout-btn:hover {
+      background-color: #ffcd38;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+        <h1>Smart Restaurant Menu</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2 style = "color:rgb(127, 0, 21);">Welcome to Our Exclusive Smart Restaurant</h2>
+      </div>
+    </section>
+    <section id="tables">
+    </section>
+    <div class="container">
+      <button id="add-table-btn">Add Table</button>
+      <button id="checkout-btn">Checkout Price</button>
+    </div>
+  </main>
+  <script>
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 0);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const addTableBtn = document.getElementById('add-table-btn');
+      const checkoutBtn = document.getElementById('checkout-btn');
+      const tablesSection = document.getElementById('tables');
+
+      let tableCount = 0;
+
+      addTableBtn.addEventListener('click', function() {
+        tableCount++;
+        const table = document.createElement('div');
+        table.classList.add('table');
+        table.textContent = `Table ${tableCount}`;
+        tablesSection.appendChild(table);
+      });
+
+      checkoutBtn.addEventListener('click', function() {
+        alert('You Have Successfully Booked Your Table.');
+        window.location.href = "/smartmenu";
+      });
+      tablesSection.addEventListener('click', function(event) {
+        if (event.target.classList.contains('table')) {
+          alert(`You have booked ${event.target.textContent} as your table.`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

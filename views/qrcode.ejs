@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, 
+						initial-scale=1.0" />
+	<title>QR Code Generator</title>
+	<style>
+		h1, h3 {
+		color: rgba(219, 137, 15, 0.804);
+		}
+		body, header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+        margin: 40px;
+        
+		}
+        
+        
+	</style>
+
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+	</script>
+</head>
+
+<body>
+	<header>
+		<h1>Generate Your QR Code For<br><center> Payment</center></h1>
+		<h3>Enter Password & Generate QR</h3>
+	</header>
+	<main>
+        
+		<form action="/"
+			id="qr-generation-form">
+			<input type="text"
+				name="qr-code-content"
+				id="qr-content"
+				value=""
+				placeholder="Enter Password"
+				autocomplete="off" />
+			<input type="submit"
+				value="Generate QR Code" />
+		</form><br />
+		<div id="qr-code"></div>
+	</main>
+</body>
+<script>
+	let qrContentInput = document.getElementById("qr-content");
+	let qrGenerationForm = 
+	document.getElementById("qr-generation-form");
+	let qrCode;
+	
+	function generateQrCode(qrContent) {
+	return new QRCode("qr-code", {
+		text: qrContent,
+		width: 256,
+		height: 256,
+		colorDark: "#000000",
+		colorLight: "#ffffff",
+		correctLevel: QRCode.CorrectLevel.H,
+	});
+	}
+	
+	
+	qrGenerationForm.addEventListener("submit", function (event) {
+
+	event.preventDefault();
+	let qrContent = qrContentInput.value;
+	if (qrCode == null) {
+		
+		
+		qrCode = generateQrCode(qrContent);
+	} else {
+		
+		
+		qrCode.makeCode(qrContent);
+	}
+	});
+</script>
+
+</html>

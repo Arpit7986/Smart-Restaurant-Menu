@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Restaurant Menu</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ 
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+
+:root {
+  --main-color: #f45866;
+  --primary-color: #404068;
+  --white: #fff;
+  --bg: #f7f0ed;
+  --light-black: #333;
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  transition: .2s linear;
+  text-transform: capitalize;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+html::-webkit-scrollbar {
+  width: .8rem;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: var(--white);
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 5rem;
+}
+
+body {
+  background: var(--bg);
+}
+
+body.active {
+  --primary-color: #fff;
+  --light-black: #eee;
+  --white: #333;
+  --bg: #222;
+  --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .4);
+}
+
+section {
+  padding: 3rem 9%;
+}
+
+.heading {
+  text-align: center;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 4rem;
+  font-size: 4rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .8rem 2.8rem;
+  border-radius: 5rem;
+  border-top-left-radius: 0;
+  border: 0.2rem solid var(--main-color);
+  cursor: pointer;
+  color: var(--main-color);
+  font-size: 1.7rem;
+  overflow: hidden;
+  z-index: 0;
+  position: relative;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--main-color);
+  z-index: -1;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  clip-path: circle(0% at 0% 5%);
+}
+
+.btn:hover::before {
+  clip-path: circle(100%);
+}
+
+.btn:hover {
+  color: var(--white);
+}
+
+/* header */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 9%;
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+}
+
+.header .logo {
+  font-size: 2.2rem;
+  font-weight: bolder;
+  color: var(--primary-color);
+}
+
+.header .logo i {
+  color: var(--main-color);
+  padding-right: .5rem;
+}
+
+.header .navbar a {
+  font-size: 1.7rem;
+  margin-left: 2rem;
+  color: var(--primary-color);
+  padding-block: 1.6rem;
+  position: relative;
+}
+
+.header .navbar a:hover {
+  color: var(--main-color);
+  background-color: darkviolet;
+}
+
+.header .navbar a::before {
+  content: "";
+  position: absolute;
+  height: .3rem;
+  border-block: 1px solid var(--main-color);
+  bottom: .5rem;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: 0.5s ease;
+}
+
+.header .navbar a:is(:hover, :focus)::before {
+  transform: scaleX(1);
+}
+
+.header .icons div {
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 2rem;
+  border-radius: .5rem;
+  margin-left: .5rem;
+  cursor: pointer;
+  color: var(--primary-color);
+  background: var(--main-color);
+  text-align: center;
+}
+
+.header .icons div:hover {
+  color: var(--main-color);
+  background: var(--primary-color);
+}
+
+#menu {
+  display: none;
+}
+
+/* home */
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(images/r1.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home .content {
+  text-align: center;
+}
+
+.home .content h3 {
+  font-size: 6rem;
+  text-transform: uppercase;
+  font-weight: normal;
+  color: #fff;
+  padding-bottom: 3.5rem;
+}
+
+/* end */
+
+.about .row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.about .row .image {
+  flex: 1 1 40rem;
+}
+
+.about .row .image img {
+  width: 100%;
+}
+
+.about .row .content {
+  flex: 1 1 40rem;
+}
+
+.about .row .content h3 {
+  font-size: 3.5rem;
+  color: var(--main-color);
+}
+
+.about .row .content p {
+  font-size: 1.6rem;
+  color: var(--light-black);
+  padding: 2rem 0;
+  line-height: 2;
+}
+
+/* end */
+
+/* service */
+
+.services .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+
+.services .box-container .box {
+  text-align: center;
+  padding: 4rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: 5rem;
+}
+
+.services .box-container .box img {
+  margin: 1rem 0;
+  height: 15rem;
+  transition: 500ms ease;
+}
+
+.services .box-container .box:hover img {
+  transform: scale(-1) rotate(180deg);
+}
+
+.services .box-container .box h3 {
+  font-size: 2rem;
+  padding: 1rem 0;
+  color: var(--primary-color);
+}
+
+.services .box-container .box p {
+  font-size: 1.5rem;
+  color: var(--light-black);
+  line-height: 2;
+}
+
+/* end */
+
+/* pricing */
+
+.plan .box-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6rem;
+}
+
+.plan .box-container .box {
+  background: var(--white);
+  width: 30rem;
+  height: 38rem;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  position: relative;
+}
+
+.plan .box-container .box:hover {
+  transform: scale(1.05);
+}
+
+.plan .box-container .box .title {
+  font-size: 2.5rem;
+  background: var(--main-color);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+  color: var(--white);
+  padding: 1rem 0;
+}
+
+.plan .box-container .box .price {
+  font-size: 4rem;
+  color: var(--light-black);
+  padding-top: 1rem;
+}
+
+.plan .box-container .box .price span {
+  font-size: 2.5rem;
+}
+
+.plan .box-container .box .month {
+  font-size: 1.4rem;
+  color: var(--light-black);
+}
+
+.plan .box-container .box ul {
+  margin: 2rem 6rem;
+  list-style: none;
+}
+
+.plan .box-container .box ul li {
+  text-align: left;
+  padding: .5rem;
+  font-size: 1.5rem;
+  color: var(--light-black);
+}
+
+.plan .box-container .box ul li i {
+  color: var(--white);
+  padding: .5rem;
+  margin-right: 1rem;
+  background: var(--main-color);
+  border-radius: 50%;
+}
+
+.plan .box-container .box ul li i.fa-times {
+  padding: .5rem .7rem;
+}
+
+.plan .box-container .box .btn {
+  position: absolute;
+  bottom: -2rem;
+  right: 2rem;
+  background: var(--white);
+}
+
+/* end */
+
+/* gallery */
+
+.gallery .gallery-slider .swiper-slide {
+  overflow: hidden;
+  border-radius: .5rem;
+  height: 50rem;
+  width: 35rem;
+}
+
+.gallery .gallery-slider .swiper-slide img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* end */
+
+/* review */
+
+.review .review-slider {
+  box-shadow: var(--box-shadow);
+}
+
+.review .review-slider .slide {
+  background: var(--white);
+  border-radius: .5rem;
+  text-align: center;
+  padding: 3rem;
+}
+
+.review .review-slider .slide img {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: .5rem;
+}
+
+.review .review-slider .slide h3 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.review .review-slider .slide p {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  line-height: 1.7;
+  padding: 1rem 0;
+}
+
+.review .review-slider .slide .stars {
+  padding: 1rem 0;
+  padding-bottom: 1.5rem;
+}
+
+.review .review-slider .slide .stars i {
+  font-size: 2rem;
+  color: var(--main-color);
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--main-color);
+}
+
+/* end */
+
+/* team */
+
+.team .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 1.5rem;
+}
+
+.team .box-container .box {
+  border-radius: .5rem;
+  background: var(--white);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.team .box-container .box img {
+  border-radius: 50%;
+  height: 15rem;
+  width: 15rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.team .box-container .box h3 {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.team .box-container .box p {
+  font-size: 1.5rem;
+  color: var(--main-color);
+}
+
+.team .box-container .box .share {
+  margin-top: .5rem;
+}
+
+.team .box-container .box .share a {
+  height: 4rem;
+  width: 4rem;
+  line-height: 4rem;
+  font-size: 1.7rem;
+  background: var(--primary-color);
+  border-radius: .5rem;
+  color: var(--white);
+  margin: .5rem 0;
+}
+
+.team .box-container .box .share a:hover {
+  background: var(--main-color);
+}
+
+/* end */
+
+.contact form {
+  text-align: center;
+}
+
+.contact form .inputBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+
+.contact form textarea,
+.contact form .inputBox input,
+.contact form .inputBox select {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  margin: .7rem 0;
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: .5rem;
+}
+
+.contact form textarea {
+  height: 20rem;
+  resize: none;
+}
+
+.contact form .inputBox input,
+.contact form .inputBox select {
+  width: 49%;
+}
+
+
+/* footer */
+
+.footer {
+  background: var(--white);
+}
+
+.footer .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 1.5rem;
+}
+
+.footer .box-container .box {
+  padding: 1rem 0;
+}
+
+.footer .box-container .box h3 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  padding: 1rem 0;
+}
+
+.footer .box-container .box p {
+  font-size: 1.5rem;
+  color: var(--main-color);
+  padding: 1rem 0;
+  line-height: 2;
+}
+
+.footer .box-container .box a {
+  display: block;
+  font-size: 1.4rem;
+  color: var(--main-color);
+  padding: 1rem 0;
+}
+
+.footer .box-container .box a i {
+  padding-right: .5rem;
+  color: var(--primary-color);
+}
+
+.footer .box-container .box a:hover {
+  color: var(--primary-color);
+}
+
+.footer .credit {
+  margin-top: 2.5rem;
+  padding: 1rem;
+  padding-top: 2rem;
+  border-top: 0.1rem solid #cecece;
+  text-align: center;
+  color: var(--main-color);
+  font-size: 2rem;
+}
+
+.footer .credit span {
+  color: var(--primary-color);
+}
+
+/* end */
+
+/* media query */
+
+@media (max-width:991px) {
+
+  html {
+    font-size: 55%;
+  }
+
+  .header {
+    padding: 2rem 5rem;
+  }
+
+  section {
+    padding: 3rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  #menu {
+    display: inline-block;
+  }
+
+  .header .navbar {
+    position: absolute;
+    top: 99%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  .header .navbar.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .header .navbar a {
+    display: flex;
+    background: var(--white);
+    border-radius: .5rem;
+    padding: 1.3rem;
+    margin: 1.3rem;
+    font-size: 2rem;
+    justify-content: center;
+  }
+
+  .home .content h3 {
+    font-size: 4rem;
+  }
+
+}
+
+@media (max-width:450px) {
+
+  html {
+    font-size: 50%;
+  }
+}
+    .home{
+  background-image: url('https://www.restaurant-menu.net/assets/restaurant-menu/img/landing/header-devices-8603bbf147.png.webp');
+}
+  </style>
+</head>
+
+<body>
+
+
+
+  <header class="header">
+
+    <a data-aos="zoom-in-left" data-aos-delay="150" href="#" class="logo"> <i class="fas fa-user"></i> Restaurant </a>
+
+    <nav class="navbar">
+      <a data-aos="zoom-in-left" data-aos-delay="300" href="#home">home</a>
+      <a data-aos="zoom-in-left" data-aos-delay="450" href="/about">about</a>
+      <a data-aos="zoom-in-left" data-aos-delay="600" href="/additem">meal</a>
+      <a data-aos="zoom-in-left" data-aos-delay="750" href="#plan">pricing</a>
+      <a data-aos="zoom-in-left" data-aos-delay="900" href="#gallery">gallery</a>
+      <a data-aos="zoom-in-left" data-aos-delay="1050" href="#blogs">blogs</a>
+      <a data-aos="zoom-in-left" data-aos-delay="1200" href="#contact">contact</a>
+      
+    </nav>
+<a data-aos="zoom-in-left" style="font-size: 18px;"><%=user%></a>
+<a href="/logout" style="font-size: 18px;">Logout</a>
+    <div class="icons">
+      <div data-aos="zoom-in-left" data-aos-delay="1350" class="fas fa-moon" id="theme-btn"></div>
+      <div data-aos="zoom-in-left" data-aos-delay="1500" class="fas fa-bars" id="menu"></div>
+    </div>
+
+  </header>
+
+
+
+  <section class="home" id="home">
+
+    <div class="content" data-aos="fade-down">
+      <h3>Our restaurant <br> welcomes you</h3>
+      <a href="#" class="btn"> see more info</a>
+    </div>
+
+  </section>
+
+
+
+  <section class="about" id="about">
+
+    <h1 class="heading"> <span>about</span> us</h1>
+
+    <div class="row">
+
+      <div class="content" data-aos="fade-up" data-aos-delay="150">
+        <h3>What U want to eat</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam officiis, reiciendis veniam incidunt
+          architecto quam velit dolorum exercitationem cum aliquam ab quas dicta dolores ad earum quasis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente adipisci totam, nam voluptates quis
+          delectus. Ea quo repudiandae.</p>
+        <a href="#" class="btn">read more</a>
+      </div>
+      <div class="image" data-aos="fade-down" data-aos-delay="300">
+        <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2stcGYtcG9tLTEyNDIuanBn.jpg" alt="">
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="services" id="services">
+
+    <h1 class="heading">our services</h1>
+
+    <div class="box-container">
+
+      <div class="box" data-aos="zoom-in" data-aos-delay="150">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCX92_x3LMEAtcx8vdI5FvaXmneAZNiCEScCH-iXjqpdAHFuBRUDF8sXIpbosCQ4ojVUk&usqp=CAU" alt="">
+        <h3>Take away delivery</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, non?</p>
+      </div>
+
+      <div class="box" data-aos="zoom-in" data-aos-delay="300">
+        <img src="https://www.meltingflowers.com/blogs/wp-content/uploads/2019/10/outdoor-birthday-decoration-ideas.jpg" alt="">
+        <h3>we arrange flowers and decorations for parties too</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, non?</p>
+      </div>
+
+      <div class="box" data-aos="zoom-in" data-aos-delay="300">
+        <img src="https://t3.ftcdn.net/jpg/03/24/73/92/360_F_324739203_keeq8udvv0P2h1MLYJ0GLSlTBagoXS48.jpg" alt="">
+        <h3>U can book Table seats prior</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, non?</p>
+      </div>
+
+
+    </div>
+
+  </section>
+
+  
+
+  <section class="plan" id="plan">
+
+    <h1 class="heading">Exclusive Offers</h1>
+
+    <div class="box-container">
+
+      <div class="box" data-aos="zoom-in-up" data-aos-delay="150">
+        <h3 class="title">Breakfast</h3>
+        <h3 class="price">10.99<span>$</span></h3>
+        <h3>Items are</h3>
+        <ul>
+          <li><i class="fas fa-check"></i>Juice / Milk</li>
+          <li><i class="fas fa-check"></i>Poha (100gms)</li>
+          <li><i class="fas fa-check"></i>Cutlet(3 pieces)</li>
+          <li><i class="fas fa-times"></i>Bread roll(2 pieces)</li>
+
+        </ul>
+        <a href="/order"><button class="btn">buy now</button></a>
+      </div>
+
+      <div class="box" data-aos="zoom-in-up" data-aos-delay="300">
+        <h3 class="title">Lunch</h3>
+        <h3 class="price">19.99<span>$</span></h3>
+        <h3>Items are</h3>
+        <ul>
+          <li><i class="fas fa-check"></i>Starters</li>
+          <li><i class="fas fa-check"></i>Rice</li>
+          <li><i class="fas fa-check"></i>Kadhai Paneer</li>
+          <li><i class="fas fa-check"></i>Malai Kofta</li>
+          <li><i class="fas fa-times"></i>Naan / Butter Roti</li>
+        </ul>
+        <a href="/order"><button class="btn">buy now</button></a>
+      </div>
+
+      <div class="box" data-aos="zoom-in-up" data-aos-delay="450">
+        <h3 class="title">Dinner</h3>
+        <h3 class="price">29.99<span>$</span></h3>
+        <h3>Items are</h3>
+        <ul>
+          <li><i class="fas fa-check"></i>Starters</li>
+          <li><i class="fas fa-check"></i>Mix Veg</li>
+          <li><i class="fas fa-check"></i>Rice / Pulav</li>
+          <li><i class="fas fa-check"></i>Palak Paneer</li>
+          <li><i class="fas fa-check"></i>Naan / Butter Roti</li>
+          <li><i class="fas fa-check"></i>Desertt</li>
+        </ul>
+        <a href="/order"><button class="btn">buy now</button></a>
+      </div>
+
+    </div>
+
+  </section>
+<br><br><br><br>
+  <img style="display: block;margin: auto;" src="https://c1.wallpaperflare.com/preview/809/886/536/dining-tables-chairs-ballroom.jpg" alt="">
+  <button style="display: block;margin: auto;width: 200px;height: 80px;font-size: 20px;margin-top: 50px;background-color:#f45866;border-radius: 15px;"><a style="" href="/table">Want To Book A Table</a></button>
+
+
+  
+
+  <section class="gallery" id="gallery">
+
+    <h1 class="heading"> <span>our</span> gallery</h1>
+
+    <div class="swiper gallery-slider" data-aos="fade-up">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2tYv2KwByu19FVKJiBJP9y6KpVVU_gTvy4Q&usqp=CAU" alt=""></div>
+        <div class="swiper-slide"><img src="https://www.cntower.ca/sites/default/files/styles/16_9_scale_and_crop_large/public/images/360-restaurant.jpg?h=5ce0254a&itok=rKXsG6Fz" alt=""></div>
+        <div class="swiper-slide"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/60/80/9b/details.jpg?w=600&h=-1&s=1" alt=""></div>
+        <div class="swiper-slide"><img src="https://t4.ftcdn.net/jpg/04/46/73/23/360_F_446732330_sagMrunUavJovxmdQJWZIUWV6HrbdipK.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="https://www.glint-berlin.de/wp-content/uploads/2019/04/Berlin-Mitte-Restaurant.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="https://s3-eu-north-1.amazonaws.com/py3.visitsweden.com/images/Tak2-CMSTemplate_IrMZHla.width-1500.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="https://t4.ftcdn.net/jpg/04/46/73/23/360_F_446732330_sagMrunUavJovxmdQJWZIUWV6HrbdipK.jpg" alt=""></div>
+      </div>
+    </div>
+
+  </section>
+
+  
+  
+
+  <section class="review" id="review">
+
+    <h1 class="heading"> blogs </h1>
+
+    <div class="swiper review-slider" data-aos="zoom-in">
+
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide slide">
+          <img src="https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg" alt="">
+          <h3>P</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur sunt eligendi est, dicta maiores amet
+            nihil perferendis, incidunt maxime aspernatur exercitationem laboriosam odio dolores magnam ratione atque,
+            quasi odit. Hic!</p>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+
+
+
+        <div class="swiper-slide slide">
+          <img src="https://cdn2.psychologytoday.com/assets/styles/manual_crop_1_91_1_1528x800/public/field_blog_entry_images/2018-09/shutterstock_648907024.jpg?itok=7lrLYx-B" alt="">
+          <h3>L</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur sunt eligendi est, dicta maiores amet
+            nihil perferendis, incidunt maxime aspernatur exercitationem laboriosam odio dolores magnam ratione atque,
+            quasi odit. Hic!</p>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+
+        <div class="swiper-slide slide">
+          <img src="https://www.georgetown.edu/wp-content/uploads/2022/02/Jkramerheadshot-scaled-e1645036825432-1050x1050-c-default.jpg" alt="">
+          <h3>T</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur sunt eligendi est, dicta maiores amet
+            nihil perferendis, incidunt maxime aspernatur exercitationem laboriosam odio dolores magnam ratione atque,
+            quasi odit. Hic!</p>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+
+        <div class="swiper-slide slide">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4xjShh4ynJbrgYrW_aB4lhKSxeMzQ3cO_A&usqp=CAU" alt="">
+          <h3>S</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur sunt eligendi est, dicta maiores amet
+            nihil perferendis, incidunt maxime aspernatur exercitationem laboriosam odio dolores magnam ratione atque,
+            quasi odit. Hic!</p>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="swiper-pagination"></div>
+
+    </div>
+
+  </section>
+
+  <button style="display: block;margin: auto;width: 200px;height: 80px;font-size: 20px;margin-top: 50px;background-color:aqua;border-radius: 15px;"><a style="" href="/qrcode">Generate QR Code</a></button>
+
+
+  <section class="team" id="team">
+
+    <h1 class="heading">Today menu</h1>
+
+    <div class="box-container" data-aos="fade-up">
+
+      <div class="box">
+        <img src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?cs=srgb&dl=pexels-ella-olsson-1640772.jpg&fm=jpg" alt="">
+        <h3>Hfkmvklfmev</h3>
+        <p>$10</p>
+
+      </div>
+      <br>
+      <div class="box">
+        <img src="https://img.veenaworld.com/wp-content/uploads/2022/10/Famous-Foods-of-Mysore-%E2%80%93-Dishes-You-Should-Try-on-Your-Next-Vacation.jpg" alt="">
+        <h3>Oldmc;m</h3>
+        <p>$15</p>
+        
+      </div>
+      <br>
+      <div class="box">
+        <img src="https://c.ndtvimg.com/2022-03/jcliv9dg_shahi-paneer_625x300_15_March_22.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=886" alt="">
+        <h3>Bcmc</h3>
+        <p>$29</p>
+       
+      </div>
+      <br>
+      <div class="box">
+        <img src="https://www.bhg.com/thmb/s23-tPdgWDvHL3kk9fsbQ_fePpk=/1244x0/filters:no_upscale():strip_icc()/macaroni-brie-crab-RU227149-fe21a00fa9ab40d78b4cea5533cadc29.jpg" alt="">
+        <h3>AkocC</h3>
+        <p>$30</p>
+       
+      </div>
+
+    </div>
+
+  </section>
+
+  
+  <a style="text-align: center;margin-left: 40%;margin-top: 20%;font-weight: 700;" href="/fastdelivery"><button style="width: 300px;height: 60px;background-color: #f45866;;border-radius: 15px;">Want Fast Delivery</button></a>
+  
+<br><br><br><br><br><br>
+  <section class="footer">
+
+    <div class="box-container">
+
+      <div class="box" data-aos="fade-up">
+        <h3> <i class="fas fa-user"></i> Restaurant </h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga deleniti excepturi obcaecati
+          exercitationem sapiente nulla fugit ducimus laudantium aliquid.</p>
+      </div>
+
+      <div class="box" data-aos="fade-up">
+        <h3>Our Services</h3>
+        <a href="#"><i class="fas fa-chevron-right"></i> Lorem ipsum dolor sit amet.</a>
+        <a href="#"><i class="fas fa-chevron-right"></i> Lorem ipsum dolor sit amet.</a>
+        <a href="#"><i class="fas fa-chevron-right"></i> Lorem ipsum dolor sit amet.</a>
+        <a href="#"><i class="fas fa-chevron-right"></i> Lorem ipsum dolor sit amet.</a>
+      </div>
+
+      <div class="box" data-aos="fade-up">
+        <h3>Contact Us</h3>
+        <a href="#"><i class="fas fa-phone"></i> +91 7844039393</a>
+        <a href="#"><i class="fas fa-phone"></i> +91 8675954994</a>
+        <a href="#"><i class="fas fa-envelope"></i> info@abc.com</a>
+        <a href="#"><i class="fas fa-map"></i> Lorem ipsum dolor sit amet.</a>
+      </div>
+
+      <div class="box" data-aos="fade-up">
+        <h3>Follow Us</h3>
+        <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+        <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+        <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+        <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+      </div>
+    </div>
+
+    <div class="credit"> &copy; copyright @ 2023</div>
+
+    </footer>
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>let navbar = document.querySelector('.header .navbar');
+      let menuBtn = document.querySelector('#menu');
+
+      menuBtn.onclick = () => {
+        menuBtn.classList.toggle('fa-times');
+        navbar.classList.toggle('active');
+      };
+
+      window.onscroll = () => {
+        menuBtn.classList.remove('fa-times');
+        navbar.classList.remove('active');
+      };
+
+      let themeBtn = document.querySelector('#theme-btn');
+
+      themeBtn.onclick = () => {
+        themeBtn.classList.toggle('fa-sun');
+
+        if (themeBtn.classList.contains('fa-sun')) {
+          document.body.classList.add('active');
+        } else {
+          document.body.classList.remove('active');
+        }
+
+      };
+
+      var swiper = new Swiper(".gallery-slider", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 20,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        }
+      });
+
+      var swiper = new Swiper(".review-slider", {
+        loop: true,
+        grabCursor: true,
+        spaceBetween: 20,
+        centeredSlides: true,
+        autoplay: {
+          delay: 5500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+
+
+      AOS.init({
+        duration: 800,
+        delay: 400
+      });
+    </script>
+
+</body>
+
+</html>
