@@ -25,7 +25,7 @@ passport.deserializeUser((user, done) => {
 
 
 function isLoggedIn(req, res, next) {
-    req.user ? next() : res.sendStatus(401);
+    req.user.displayName ? next() : res.sendStatus(401);
 }
 
 router.get('/auth/google',
@@ -39,12 +39,12 @@ passport.authenticate('google', {
 })
 );
 
-router.get('/auth/protected',isLoggedIn,async (req, res) => {
-      let name = req.user.displayName;
+router.get('/auth/protected', isLoggedIn,async (req, res) => {
+    let name=req.user.displayName
     let email=req.user.email
     let existingUser=await Google.findOne({email})
     if(!existingUser)
-    await Google.create({name,email})
+    await Google.create({name,email})   
     res.redirect('/smartmenu')
 });
 
