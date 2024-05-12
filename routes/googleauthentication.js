@@ -39,18 +39,10 @@ passport.authenticate('google', {
 })
 );
 
-router.get('/auth/protected', isLoggedIn, async (req, res) => {
-  try {
-    let name = req.user.displayName;
-    let email = req.user.email;
-    let id = req.user.id;
-    await Google.create({ name, email });
+router.get('/auth/protected', async (req, res) => {
+ 
     res.redirect('/smartmenu');
-  } catch (error) {
-    console.error('Error inserting data into MongoDB:', error);
-    // Handle the error appropriately, such as sending an error response to the client
-    res.status(500).send('Internal Server Error');
-  }
+
 });
 router.get('/auth/google/failure', (req, res) => {
     res.send('Failure');
