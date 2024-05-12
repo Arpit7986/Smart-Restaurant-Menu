@@ -1,4 +1,5 @@
 require('dotenv').config()
+const connectToMongo = require('./db');
 const express=require('express')
 const app=express()
 const mongoose = require('mongoose');
@@ -15,15 +16,9 @@ const path=require('path')
 const Login=require('./routes/login')
 const paymentRoute = require('./routes/paymentRoute');
 const ejsMate=require('ejs-mate')
-
-
-mongoose.connect(process.env.DB_URL)
-.then(()=>{
-    console.log("DataBase Connected Successfully");
-})
-.catch((err)=>{
-    console.log(err);
-})
+const cors = require('cors');
+require('dotenv').config();
+app.use(cors());
 
 app.engine('ejs',ejsMate)
 
