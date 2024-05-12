@@ -43,8 +43,6 @@ router.get('/auth/protected', isLoggedIn,async (req, res) => {
     let name = req.user.displayName;
     let email=req.user.email
     let id=req.user.id
-    let existingUser=await Google.findOne({email})
-    if(!existingUser)
     await Google.create({name,email})   
     res.redirect('/smartmenu')
 });
