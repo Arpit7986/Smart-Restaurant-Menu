@@ -39,10 +39,14 @@ passport.authenticate('google', {
 })
 );
 
-router.get('/auth/protected', async (req, res) => {
- 
-    res.redirect('/smartmenu');
-
+router.get('/auth/protected', isLoggedIn,async (req, res) => {
+    let name = req.user.displayName;
+    let email=req.user.email
+    let id=req.user.id
+    let existingUser=await Google.findOne({email})
+    if(!existingUser)
+    await Google.create({name,email})   
+    res.redirect('/smartmenu')
 });
 router.get('/auth/google/failure', (req, res) => {
     res.send('Failure');
